@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESTION TAREAS - OPTRON</title>
+
+    <!-- Iconos (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg: #f1f5f9;
+			--imagen-fondo: url('/imagen/logo.png');
+			--card: #ffffff;
+            --accent: #ea9800;
+            --text: #0f172a;
+            --muted: #64748b;
+        }
+
+        body {
+            background-image: var(--imagen-fondo);	
+			font-family: Inter, Arial, sans-serif;
+			background: var(--bg);
+            margin: 0;
+            padding: 40px;
+            color: var(--text);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            text-decoration: none;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+            border-color: var(--accent);
+        }
+
+        .icon {
+            width: 32px;
+            height: 32px;
+            color: var(--accent);
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .desc {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+		
+    </style>
+</head>
+<body>
+
+    <h1>GESTION TAREAS - OPTRON</h1>
+    <p style="color: var(--muted); margin-bottom: 25px;">
+        Selecciona una categoría para abrir su contenido.
+    </p>
+
+    <div class="grid">
+
+        <a class="card" href="calendario.html">
+            <i data-lucide="calendar-1" class="icon"></i>
+            <div>
+                <div class="title">Calendario</div>
+                <div class="desc">Anota tus tareas y recordatorios por día</div>
+            </div>
+        </a>
+
+        <a class="card" href="base.html">
+            <i data-lucide="brain" class="icon"></i>
+            <div>
+                <div class="title">Base de conocimientos</div>
+                <div class="desc">Pon aqui todas las anotaciones para futuras dudas</div>
+            </div>
+        </a>
+
+        <a class="card" href="control stock.html">
+            <i data-lucide="warehouse" class="icon"></i>
+            <div>
+                <div class="title">Control de stock</div>
+                <div class="desc">Controla desde aqui el stock en los armarios</div>
+            </div>
+        </a>
+
+        <a class="card" href="notas rapidas.html">
+            <i data-lucide="notebook" class="icon"></i>
+            <div>
+                <div class="title">Notas rapidas</div>
+                <div class="desc">Añade ideas, recordatorios o tareas al vuelo</div>
+            </div>
+        </a>
+
+        <a class="card" href="gestor tareas.html">
+            <i data-lucide="notebook-text" class="icon"></i>
+            <div>
+                <div class="title">Gestor de tareas</div>
+                <div class="desc">Trabajos a realizar, manteniendo un orden</div>
+            </div>
+        </a>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+		
+</body>
+</html>

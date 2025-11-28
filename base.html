@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Base de conocimientos (estática)</title>
+  <style>
+    :root{--bg:#f5f7fb;--card:#fff;--accent:#ea9800;--muted:#6b7280}
+    body{font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);margin:0;padding:24px;color:#0f172a}
+    .container{max-width:1000px;margin:0 auto}
+    header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+    h1{margin:0;font-size:20px}
+    .controls{display:flex;gap:8px;flex-wrap:wrap}
+    input[type="search"]{padding:10px 12px;border-radius:8px;border:1px solid #e6eefc;width:360px}
+    button{background:var(--accent);color:#fff;border:none;padding:9px 12px;border-radius:8px;cursor:pointer}
+    .chip{background:#eaf2ff;border:1px solid #d6e9ff;color:var(--accent);padding:6px 8px;border-radius:999px;font-size:13px}
+
+    .tags{margin:12px 0;display:flex;gap:8px;flex-wrap:wrap}
+    .tag{padding:6px 10px;border-radius:999px;border:1px solid #e2e8f0;background:#FABE55;cursor:pointer;font-size:13px}
+    .tag.active{background:var(--accent);color:#fff;border-color:transparent}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 1px 2px rgba(15,23,42,0.04);border:1px solid #eef2ff}
+    .card h3{margin:0 0 6px 0;font-size:16px}
+    .meta{font-size:13px;color:var(--muted);margin-bottom:8px}
+    .excerpt{color:#334155;font-size:14px;margin-bottom:10px}
+    .actions{display:flex;gap:8px}
+    .secondary{background:#f1f5f9;color:#0f172a;border:1px solid #e6eefc}
+
+    .form-panel{position:fixed;right:20px;bottom:20px}
+    .modal{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(2,6,23,0.5);display:flex;align-items:center;justify-content:center}
+    .modal .sheet{width:720px;background:var(--card);padding:18px;border-radius:12px}
+    label{display:block;margin-top:8px;font-size:13px;color:var(--muted)}
+    input[type="text"],textarea,select{width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid #e6eefc}
+    textarea{min-height:120px}
+    footer.note{margin-top:14px;font-size:13px;color:var(--muted)}
+
+    .empty{padding:32px;text-align:center;color:var(--muted)}
+    .small{font-size:13px}
+
+    @media (max-width:720px){input[type="search"]{width:100%}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Optron - Base de conocimientos</h1>
+        <div class="small">Estática (sin servidor). Guardado en localStorage o editando el array de contenidos.</div>
+      </div>
+      <div style="margin-left:auto" class="controls">
+        <input id="search" type="search" placeholder="Buscar título, contenido o tag..." />
+        <button id="newBtn">+ Nueva nota</button>
+        <div class="chip" id="count">0 notas</div>
+      </div>
+    </header>
+
+    <div class="tags" id="tags"></div>
+
+    <main>
+      <div id="grid" class="grid"></div>
+      <div id="empty" class="empty" style="display:none">No se encontraron resultados.</div>
+    </main>
+
+    <div class="form-panel">
+      <button id="clearBtn" class="secondary">Limpiar localStorage</button>
+    </div>
+  </div>
+
+  <!-- Modal (oculto por defecto) -->
+  <div id="modal" class="modal" style="display:none">
+    <div class="sheet">
+      <h2 id="modalTitle">Nueva nota</h2>
+      <label>Título<input id="title" type="text" /></label>
+      <label>Tags (separados por comas)<input id="tagsInput" type="text" placeholder="ej: redes,linux" /></label>
+      <label>Contenido<textarea id="content"></textarea></label>
+      <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
+        <button id="saveBtn">Guardar</button>
+        <button id="cancelBtn" class="secondary">Cancelar</button>
+      </div>
+      <footer class="note">Puedes editar el array <code>DEFAULT_NOTES</code> en el archivo HTML si prefieres contenido pre-cargado permanente (esto no usa servidor).</footer>
+    </div>
+  </div>
+
+  <script>
+    // Contenido por defecto: edítalo directamente para una 'versión sin DB' que venga con el archivo.
+    const DEFAULT_NOTES = [
+      {id:1,title:'Cómo conectar impresora en red',tags:['redes','impresora'],content:'Comprueba IP, comparte la impresora en Windows y configura drivers.'},
+      {id:2,title:'Recuperar contraseña de Android',tags:['android','seguridad'],content:'Si tienes copia de seguridad de Google, usa la opción de restaurar. Para patrón, prueba adb si tienes debug activo.'},
+      {id:3,title:'Checklist post-reparación',tags:['procedimientos','tienda'],content:'Prueba pantalla, altavoces, wifi; realiza testeo y rellena ticket de entrega.'}
+    ];
+
+    // --- Helpers para persistencia en localStorage ---
+    const STORAGE_KEY = 'kb_notes_v1';
+    function loadNotes(){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(!raw) return DEFAULT_NOTES.slice();
+        const parsed = JSON.parse(raw);
+        if(!Array.isArray(parsed)) return DEFAULT_NOTES.slice();
+        return parsed;
+      }catch(e){console.error(e);return DEFAULT_NOTES.slice();}
+    }
+    function saveNotes(notes){localStorage.setItem(STORAGE_KEY,JSON.stringify(notes));}
+
+    // --- App state ---
+    let notes = loadNotes();
+    let activeTag = null;
+
+    // --- UI refs ---
+    const grid = document.getElementById('grid');
+    const tagsWrap = document.getElementById('tags');
+    const countChip = document.getElementById('count');
+    const searchInput = document.getElementById('search');
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const titleInput = document.getElementById('title');
+    const tagsInput = document.getElementById('tagsInput');
+    const contentInput = document.getElementById('content');
+    const newBtn = document.getElementById('newBtn');
+    const saveBtn = document.getElementById('saveBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const emptyBox = document.getElementById('empty');
+    const clearBtn = document.getElementById('clearBtn');
+
+    // --- Render ---
+    function renderTags(){
+      const allTags = new Set();
+      notes.forEach(n=>n.tags.forEach(t=>allTags.add(t)));
+      tagsWrap.innerHTML = '';
+      const allBtn = document.createElement('button');
+      allBtn.className = 'tag ' + (activeTag===null?'active':'');
+      allBtn.textContent = 'Todas';
+      allBtn.onclick = ()=>{activeTag=null;render();};
+      tagsWrap.appendChild(allBtn);
+
+      Array.from(allTags).sort().forEach(t=>{
+        const b = document.createElement('button');
+        b.className = 'tag '+(activeTag===t?'active':'');
+        b.textContent = t;
+        b.onclick = ()=>{activeTag = (activeTag===t?null:t);render();};
+        tagsWrap.appendChild(b);
+      });
+    }
+
+    function render(){
+      const q = searchInput.value.trim().toLowerCase();
+      let filtered = notes.filter(n=>{
+        if(activeTag && !n.tags.includes(activeTag)) return false;
+        if(!q) return true;
+        return (n.title + ' ' + n.content + ' ' + n.tags.join(' ')).toLowerCase().includes(q);
+      });
+      grid.innerHTML = '';
+      if(filtered.length===0){emptyBox.style.display='block';}else{emptyBox.style.display='none';}
+      filtered.forEach(n=>{
+        const el = document.createElement('article');
+        el.className = 'card';
+        el.innerHTML = `
+          <h3>${escapeHtml(n.title)}</h3>
+          <div class="meta">Tags: ${n.tags.map(t=>`<span class="small">${t}</span>`).join(', ')}</div>
+          <div class="excerpt">${escapeHtml(n.content).slice(0,220)}${n.content.length>220?'...':''}</div>
+          <div class="actions">
+            <button onclick="viewNote(${n.id})">Ver</button>
+            <button class="secondary" onclick="editNote(${n.id})">Editar</button>
+            <button class="secondary" onclick="deleteNote(${n.id})">Eliminar</button>
+          </div>
+        `;
+        grid.appendChild(el);
+      });
+
+      countChip.textContent = notes.length + ' notas';
+      renderTags();
+    }
+
+    // --- Utilities ---
+    function escapeHtml(s){return String(s).replace(/[&<>\"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]||c));}
+    function nextId(){return notes.reduce((m,n)=>Math.max(m,n.id||0),0)+1}
+
+    // --- Actions available from HTML via global scope ---
+    window.viewNote = function(id){
+      const n = notes.find(x=>x.id===id);
+      if(!n) return alert('Nota no encontrada');
+      modalTitle.textContent = 'Ver nota';
+      titleInput.value = n.title; tagsInput.value = n.tags.join(','); contentInput.value = n.content;
+      titleInput.disabled = true; tagsInput.disabled = true; contentInput.disabled = true; saveBtn.style.display='none';
+      openModal();
+    }
+
+    window.editNote = function(id){
+      const n = notes.find(x=>x.id===id);
+      if(!n) return alert('Nota no encontrada');
+      modalTitle.textContent = 'Editar nota';
+      titleInput.value = n.title; tagsInput.value = n.tags.join(','); contentInput.value = n.content;
+      titleInput.disabled = false; tagsInput.disabled = false; contentInput.disabled = false; saveBtn.style.display='inline-block';
+      openModal();
+      saveBtn.onclick = ()=>{
+        n.title = titleInput.value.trim() || 'Sin título';
+        n.tags = tagsInput.value.split(',').map(s=>s.trim()).filter(Boolean);
+        n.content = contentInput.value.trim();
+        saveNotes(notes); render(); closeModal();
+      }
+    }
+
+    window.deleteNote = function(id){
+      if(!confirm('Eliminar nota?')) return;
+      notes = notes.filter(n=>n.id!==id); saveNotes(notes); render();
+    }
+
+    // --- Modal logic ---
+    function openModal(){modal.style.display='flex'}
+    function closeModal(){modal.style.display='none'; titleInput.disabled=false; tagsInput.disabled=false; contentInput.disabled=false; saveBtn.style.display='inline-block'; saveBtn.onclick = defaultSave;}
+
+    newBtn.onclick = ()=>{
+      modalTitle.textContent = 'Nueva nota'; titleInput.value=''; tagsInput.value=''; contentInput.value=''; openModal();
+    }
+
+    function defaultSave(){
+      const t = titleInput.value.trim() || 'Sin título';
+      const tg = tagsInput.value.split(',').map(s=>s.trim()).filter(Boolean);
+      const c = contentInput.value.trim();
+      const note = {id: nextId(), title:t, tags:tg, content:c};
+      notes.unshift(note); saveNotes(notes); render(); closeModal();
+    }
+    saveBtn.onclick = defaultSave;
+    cancelBtn.onclick = closeModal;
+
+    // Search
+    searchInput.addEventListener('input', ()=>render());
+
+    // Clear localStorage (restaurar a DEFAULT_NOTES)
+    clearBtn.onclick = ()=>{
+      if(!confirm('Eliminar notas guardadas en localStorage y restaurar contenido por defecto?')) return;
+      localStorage.removeItem(STORAGE_KEY); notes = loadNotes(); render();
+    }
+
+    // Inicializamos
+    render();
+  </script>
+</body>
+</html>

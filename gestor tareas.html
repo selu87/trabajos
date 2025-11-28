@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gestor de tareas secuencial</title>
+  <style>
+    :root{--bg:#f6f8fb;--card:#FFFFFF;--accent:#EA9800;--muted:#6b7280;--ok:#16a34a}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); margin:0; padding:24px; color:#0f172a}
+    .app{max-width:980px;margin:0 auto}
+    header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+    h1{font-size:20px;margin:0}
+    .card{background:var(--card);border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(11,25,55,0.06)}
+    form{display:flex;gap:8px;flex-wrap:wrap}
+    input[type=text], textarea{flex:1;padding:10px;border:1px solid #e6e9ef;border-radius:8px;font-size:14px}
+    button{background:var(--accent);color:white;border:0;padding:10px 14px;border-radius:8px;cursor:pointer}
+    button.secondary{background:transparent;color:var(--accent);border:1px solid #dbeafe}
+    .columns{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+    .list{min-height:120px}
+    .task{display:flex;align-items:flex-start;gap:12px;padding:10px;border-radius:10px;border:1px solid #eef2ff;background:linear-gradient(180deg,#fff,#fbfdff)}
+    .task.in-progress{border-color: #c7e0ff; box-shadow:0 4px 10px rgba(11,105,255,0.06)}
+    .task.completed{opacity:0.7;text-decoration:line-through}
+    .task .title{font-weight:600}
+    .task .desc{font-size:13px;color:var(--muted)}
+    .task .controls{margin-left:auto;display:flex;gap:6px}
+    .small{font-size:13px;padding:6px 8px;border-radius:8px}
+    .badge{font-size:12px;padding:6px 8px;border-radius:999px;border:1px solid #eef2ff}
+    .muted{color:var(--muted)}
+    footer{margin-top:16px;text-align:right;color:var(--muted);font-size:13px}
+    @media(max-width:760px){.columns{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Optron - Gestor de tareas secuencial</h1>
+      <div class="muted">(No se puede iniciar otra tarea si hay una en curso)</div>
+    </header>
+
+    <div class="card">
+      <form id="taskForm">
+        <input id="title" type="text" placeholder="Título de la tarea" required />
+        <input id="due" type="text" placeholder="Fecha / nota breve (opcional)" />
+        <button id="addBtn" type="submit">Añadir tarea</button>
+        <button id="clearBtn" type="button" class="secondary">Limpiar</button>
+      </form>
+
+      <div class="columns">
+        <div>
+          <h3>Cola (pendientes)</h3>
+          <div id="pendingList" class="list"></div>
+        </div>
+
+        <div>
+          <h3>En curso / completadas</h3>
+          <div id="activeList" class="list"></div>
+        </div>
+      </div>
+
+      <footer>
+        <span id="statusInfo">Sin tareas</span>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Modelo simple de tareas con persistencia en localStorage
+    const STORAGE_KEY = 'gestor_tareas_secuencial_v1'
+    let tasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+
+    const els = {
+      pendingList: document.getElementById('pendingList'),
+      activeList: document.getElementById('activeList'),
+      taskForm: document.getElementById('taskForm'),
+      title: document.getElementById('title'),
+      due: document.getElementById('due'),
+      statusInfo: document.getElementById('statusInfo'),
+      clearBtn: document.getElementById('clearBtn')
+    }
+
+    function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks)) }
+
+    function hasInProgress(){ return tasks.some(t => t.status === 'in-progress') }
+
+    function addTask(title, note){
+      const id = Date.now().toString(36) + Math.random().toString(36).slice(2,7)
+      tasks.push({id, title, note, status:'pending', created: new Date().toISOString()})
+      save()
+      render()
+    }
+
+    function startTask(id){
+      if(hasInProgress()){
+        alert('Ya hay una tarea en curso. Finaliza la que está en curso antes de empezar otra.')
+        return
+      }
+      tasks = tasks.map(t => t.id===id ? {...t, status:'in-progress', started: new Date().toISOString()} : t)
+      save(); render()
+    }
+
+    function completeTask(id){
+      tasks = tasks.map(t => t.id===id ? {...t, status:'completed', finished: new Date().toISOString()} : t)
+      save(); render()
+    }
+
+    function deleteTask(id){
+      if(confirm('Eliminar tarea?')){
+        tasks = tasks.filter(t => t.id!==id)
+        save(); render()
+      }
+    }
+
+    function moveUp(id){
+      // mueve la tarea hacia adelante en la cola (si no está en curso)
+      const idx = tasks.findIndex(t => t.id===id)
+      if(idx<=0) return
+      // solo reordena entre pendientes
+      const t = tasks[idx]
+      if(t.status !== 'pending') return
+      // buscar anterior pendiente
+      for(let i=idx-1;i>=0;i--){ if(tasks[i].status==='pending'){ tasks.splice(idx,1); tasks.splice(i,0,t); break } }
+      save(); render()
+    }
+
+    function render(){
+      // pendientes: todos con status pending
+      const pend = tasks.filter(t=>t.status==='pending')
+      const inprog = tasks.find(t=>t.status==='in-progress')
+      const completed = tasks.filter(t=>t.status==='completed')
+
+      els.pendingList.innerHTML = pend.length ? pend.map(t => taskHTML(t)).join('') : '<div class="muted">No hay tareas pendientes</div>'
+
+      const activeNodes = []
+      if(inprog){ activeNodes.push(taskHTML(inprog)) }
+      if(completed.length) activeNodes.push('<div style="margin-top:10px"><strong>Completadas:</strong></div>')
+      if(completed.length) activeNodes.push(completed.map(t => taskHTML(t)).join(''))
+
+      els.activeList.innerHTML = activeNodes.length ? activeNodes.join('') : '<div class="muted">No hay tareas en curso ni completadas</div>'
+
+      // estado inferior
+      if(inprog) els.statusInfo.textContent = `Tarea en curso: ${inprog.title}`
+      else if(pend.length) els.statusInfo.textContent = `Tareas pendientes: ${pend.length}`
+      else els.statusInfo.textContent = 'Sin tareas'
+    }
+
+    function taskHTML(t){
+      const isIn = t.status==='in-progress'
+      const isComp = t.status==='completed'
+      return `
+        <div class="task ${isIn? 'in-progress':''} ${isComp? 'completed':''}" data-id="${t.id}">
+          <div>
+            <div class="title">${escapeHtml(t.title)} ${t.note? `<span class="badge">${escapeHtml(t.note)}</span>` : ''}</div>
+            <div class="desc">${isComp? 'Finalizada: ' + (t.finished? formatDate(t.finished): '') : (t.started? 'Iniciada: '+formatDate(t.started): '')}</div>
+          </div>
+          <div class="controls">
+            ${t.status==='pending' ? `<button class="small" onclick="startTask('${t.id}')" ${hasInProgress() ? 'disabled title="Finaliza la tarea en curso"':''}>Iniciar</button>
+                                     <button class="small" onclick="moveUp('${t.id}')">Mover ↑</button>` : ''}
+            ${t.status==='in-progress' ? `<button class="small" onclick="completeTask('${t.id}')">Finalizar</button>` : ''}
+            ${t.status==='completed' ? `<button class="small" onclick="deleteTask('${t.id}')">Eliminar</button>` : `<button class="small" onclick="deleteTask('${t.id}')">Eliminar</button>`}
+          </div>
+        </div>
+      `
+    }
+
+    // util
+    function formatDate(iso){ const d = new Date(iso); return d.toLocaleString() }
+    function escapeHtml(s){ if(!s) return ''; return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;') }
+
+    // handlers
+    els.taskForm.addEventListener('submit', e=>{
+      e.preventDefault(); const title = els.title.value.trim(); const note = els.due.value.trim();
+      if(!title) return
+      addTask(title,note); els.title.value=''; els.due.value=''
+    })
+
+    els.clearBtn.addEventListener('click', ()=>{ els.title.value=''; els.due.value=''; })
+
+    // Exponer funciones globales para botones inline
+    window.startTask = startTask
+    window.completeTask = completeTask
+    window.deleteTask = deleteTask
+    window.moveUp = moveUp
+
+    // inicial
+    render()
+  </script>
+</body>
+</html>

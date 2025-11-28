@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control de Piezas - Reposición</title>
+  <style>
+    body {font-family: Arial, sans-serif; margin: 20px; background: #f8fafc; color:#333;}
+    h1 {text-align: center; color:#000;}
+    .card {background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:20px;}
+    .card label {display:block; margin-bottom:8px; font-weight:bold;}
+    .card input, .card textarea {width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; font-family:inherit;}
+    textarea {resize:vertical; min-height:60px;}
+    .familia {margin: 20px 0; padding: 15px; border-radius: 10px; background: #fff; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+    .familia h2 {margin-top: 0; color:#ffa600; font-size: 18px;}
+    .articulo {display: flex; align-items: center; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #eee;}
+    .articulo:last-child {border-bottom: none;}
+    button {background:#ffa600; color:#fff; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-size:14px;}
+    button:hover {background:#ea9800;}
+    .acciones {text-align:center; margin-top:30px;}
+  </style>
+</head>
+<body>
+  <h1>Control de Piezas - Reposición</h1>
+
+  <div class="card">
+    <label for="armario">Armario:</label>
+    <input type="text" id="armario" placeholder="Número o referencia de armario">
+
+    <label for="observaciones">Observaciones:</label>
+    <textarea id="observaciones" placeholder="Notas adicionales..."></textarea>
+  </div>
+
+<div class="familia">
+    <h2>Frenos</h2>
+	<h3>N - No hay, P - Hay pocos, R - Para rellenar otro </h3>
+    <div class="articulo"><label><input type="checkbox" value="3"> 3</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="4"> 4</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="5"> 5</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="6"> 6</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="8"> 8</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+     </div>
+  
+  <div class="familia">
+    <h2>Tuercas</h2>
+	<h3>N - No hay, P - Hay pocos, R - Para rellenar otro </h3>
+    <div class="articulo"><label><input type="checkbox" value="M3"> M3</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M4"> M4</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5"> M5</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6"> M6</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8"> M8</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10"> M10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12"> M12</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M14"> M14</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M16"> M16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+  </div>
+  
+  <div class="familia">
+    <h2>Autobloc</h2>
+	<h3>N - No hay, P - Hay pocos, R - Para rellenar otro </h3>
+    <div class="articulo"><label><input type="checkbox" value="M3"> M3</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M4"> M4</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5"> M5</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6"> M6</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8"> M8</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10"> M10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12"> M12</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M14"> M14</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M16"> M16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M18"> M18</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M20"> M20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	  
+  </div>
+  
+  <div class="familia">
+    <h2>Arandelas</h2>
+	<h3>N - No hay, P - Hay pocos, R - Para rellenar otro </h3>
+    <div class="articulo"><label><input type="checkbox" value="M3"> M3</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M4"> M4</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5"> M5</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6"> M6</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8"> M8</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10"> M10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12"> M12</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M14"> M14</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M16"> M16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M20"> M20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+  </div>
+  
+  <div class="familia">
+    <h2>Chapeton</h2>
+	<h3>N - No hay, P - Hay pocos, R - Para rellenar otro </h3>
+    <div class="articulo"><label><input type="checkbox" value="M4"> M4</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5"> M5</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6"> M6</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8"> M8</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10"> M10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12"> M12</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M14"> M14</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M16"> M16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+  </div>
+  
+  <div class="familia">
+    <h2>Grower</h2>
+	<h3>N - No hay, P - Hay pocos, R - Para rellenar otro </h3>
+    <div class="articulo"><label><input type="checkbox" value="M3"> M3</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M4"> M4</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5"> M5</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6"> M6</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8"> M8</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10"> M10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12"> M12</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M14"> M14</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M16"> M16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+  </div>
+  
+  <div class="familia">
+    <h2>Acuñadas</h2>
+	<h3>N - No hay, P - Hay pocos, R - Para rellenar otro </h3>
+    <div class="articulo"><label><input type="checkbox" value="M3"> M3</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M4"> M4</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5"> M5</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6"> M6</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8"> M8</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10"> M10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12"> M12</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M14"> M14</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M16"> M16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+  </div>
+  
+   <div class="familia">
+    <h2>Plástico</h2>
+	<h3>N - No hay, P - Hay pocos, R - Para rellenar otro </h3>
+    <div class="articulo"><label><input type="checkbox" value="M5"> M5</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6"> M6</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+  </div>
+
+<div class="familia">
+    <h2>TAE</h2>
+	<h3>N - No hay, P - Hay pocos, R - Para rellenar otro </h3>
+    <div class="articulo"><label><input type="checkbox" value="M3x6"> M3x6</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M3x12"> M3x12</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>   
+	<div class="articulo"><label><input type="checkbox" value="M3x16"> M3x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M3x20"> M3x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M3x25"> M3x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M3x30"> M3x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M4x6"> M4x6</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x10"> M4x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x12"> M4x12</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x16"> M4x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x25"> M4x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x30"> M4x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x35"> M4x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x40"> M4x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x45"> M4x45</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x12 inox"> M4x12 Inox</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x20 inox"> M4x20 Inox</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x10"> M5x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x12"> M5x12</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x16"> M5x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x20"> M5x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x25"> M5x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x30"> M5x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x35"> M5x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x40"> M5x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x45"> M5x45</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x50"> M5x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x55"> M5x55</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x60"> M5x60</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x65"> M5x65</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x70"> M5x70</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x10"> M6x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x12"> M6x12</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x16"> M6x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x20"> M6x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x25"> M6x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x30"> M6x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x35"> M6x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x40"> M6x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x45"> M6x45</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x50"> M6x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x55"> M6x55</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x60"> M6x60</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>	
+	<div class="articulo"><label><input type="checkbox" value="M6x70"> M6x70</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>	
+	<div class="articulo"><label><input type="checkbox" value="M6x80"> M6x80</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>	
+	<div class="articulo"><label><input type="checkbox" value="M8x10"> M8x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x16"> M8x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x20"> M8x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x25"> M8x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x30"> M8x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x35"> M8x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x40"> M8x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x45"> M8x45</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x50"> M8x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x55"> M8x55</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x60"> M8x60</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x65"> M8x65</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x70"> M8x70</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x75"> M8x75</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x80"> M8x80</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x90"> M8x90</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x100"> M8x100</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x20"> M10x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x25"> M10x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x30"> M10x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x35"> M10x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x40"> M10x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x45"> M10x45</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x50"> M10x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x55"> M10x55</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x60"> M10x60</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x65"> M10x65</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x70"> M10x70</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12x25"> M12x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M14x35"> M14x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	
+  </div>
+  
+  <div class="familia">
+    <h2>CB</h2>
+	<h3>N - No hay, P - Hay pocos, R - Para rellenar otro </h3>
+    <div class="articulo"><label><input type="checkbox" value="M4x10"> M4x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M5x10"> M5x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M5x16"> M5x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x10"> M6x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x16"> M6x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x16"> M8x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x20"> M8x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x25"> M8x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x30"> M8x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10x30"> M10x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    
+  </div>
+  
+  <div class="familia">
+    <h2>Hex</h2>
+	<h3>N - No hay, P - Hay pocos, R - Para rellenar otro </h3>
+    <div class="articulo"><label><input type="checkbox" value="M4x10"> M4x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M4x16"> M4x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x20"> M4x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M4x25"> M4x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x10"> M5x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M5x16"> M5x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x20"> M5x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M5x60"> M5x60</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x70"> M5x70</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M5x80"> M5x80</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x10"> M6x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x16"> M6x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x20"> M6x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x25"> M6x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x30"> M6x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x35"> M6x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x40"> M6x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x45"> M6x45</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x60"> M6x60</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x90"> M6x90</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x10"> M8x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x16"> M8x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x20"> M8x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x25"> M8x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x30"> M8x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x35"> M8x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x40"> M8x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x50"> M8x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x55"> M8x55</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x60"> M8x60</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x65"> M8x65</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x70"> M8x70</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x75"> M8x75</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x80"> M8x80</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x140"> M8x140</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x16"> M10x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x20"> M10x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10x25"> M10x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x30"> M10x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10x35"> M10x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x40"> M10x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x50"> M10x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x60"> M10x60</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x70"> M10x70</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10x80"> M10x80</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x110"> M10x110</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10x120"> M10x120</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12x30"> M12x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M12x40"> M12x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12x80"> M12x80</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M14x50"> M14x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M14x80"> M14x80</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M16x40"> M16x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M16x50"> M16x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M16x60"> M16x60</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M20x50"> M20x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	
+	
+  </div>
+
+  <div class="familia">
+    <h2>Allen</h2>
+	<h3>N - No hay, P - Hay pocos, R - Para rellenar otro </h3>
+    <div class="articulo"><label><input type="checkbox" value="M3x6"> M3x6</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M3x10"> M3x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M3x16"> M3x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M3x20"> M3x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M3x25"> M3x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M3x30"> M3x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M3x35"> M3x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M3x40"> M3x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M3x45"> M3x45</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x10"> M4x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M4x16"> M4x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x20"> M4x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M4x25"> M4x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x30"> M4x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M4x40"> M4x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x45"> M4x45</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x50"> M4x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x10"> M5x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x16"> M5x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x20"> M5x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M5x25"> M5x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x30"> M5x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x35"> M5x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x40"> M5x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x45"> M5x45</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div> 
+	<div class="articulo"><label><input type="checkbox" value="M5x50"> M5x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x55"> M5x55</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x60"> M5x60</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x65"> M5x65</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M5x70"> M5x70</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M5x90"> M5x90</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x10"> M6x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x12"> M6x12</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x16"> M6x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x20"> M6x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x25"> M6x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x30"> M6x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x35"> M6x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x40"> M6x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x45"> M6x45</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x50"> M6x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x55"> M6x55</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x60"> M6x60</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x65"> M6x65</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x70"> M6x70</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x75"> M6x75</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x80"> M6x80</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x90"> M6x90</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x10"> M8x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x12"> M8x12</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x16"> M8x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x20"> M8x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x25"> M8x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x30"> M8x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x35"> M8x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x40"> M8x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x45"> M8x45</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x50"> M8x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x55"> M8x55</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x60"> M8x60</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x65"> M8x65</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x70"> M8x70</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x80"> M8x80</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x90"> M8x90</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x100"> M8x100</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x110"> M8x110</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>   
+    <div class="articulo"><label><input type="checkbox" value="M8x40 negro"> M8x40 Negro</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x60 negro"> M8x60 Negro</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x16"> M10x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10x20"> M10x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x25"> M10x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x30"> M10x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10x35"> M10x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x40"> M10x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x45"> M10x45</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10x50"> M10x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x60"> M10x60</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x70"> M10x70</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x75"> M10x75</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x80"> M10x80</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x85"> M10x85</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x90"> M10x90</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x95"> M10x95</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12x20"> M12x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12x25"> M12x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12x30"> M12x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12x35"> M12x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12x40"> M12x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12x45"> M12x45</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12x50"> M12x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12x55"> M12x55</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12x60"> M12x60</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12x70"> M12x70</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12x80"> M12x80</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M12x90"> M12x90</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+     </div>
+	 
+	<div class="familia">
+    <h2>ULS</h2>
+	<h3>N - No hay, P - Hay pocos, R - Para rellenar otro </h3>
+    <div class="articulo"><label><input type="checkbox" value="M4x6"> M4x6</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M4x10"> M4x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M4x16"> M4x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M4x20"> M4x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x25"> M4x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x30"> M4x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M4x35"> M4x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M5x10"> M5x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M5x16"> M5x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M5x20"> M5x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M5x40"> M5x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M5x50"> M5x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M6x10"> M6x10</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x12"> M6x12</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x16"> M6x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x20"> M6x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x25"> M6x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x30"> M6x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x35"> M6x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x40"> M6x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M6x50"> M6x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x12"> M8x12</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x16"> M8x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x20"> M8x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x25"> M8x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x30"> M8x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M8x35"> M8x35</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x40"> M8x40</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x45"> M8x45</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x50"> M8x50</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x55"> M8x55</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M8x60"> M8x60</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10x16"> M10x16</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10x20"> M10x20</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10x25"> M10x25</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="M10x30"> M10x30</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+    <div class="articulo"><label><input type="checkbox" value="M10x60"> M10x60</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	
+	
+  </div>
+
+<div class="familia">
+    <h2>Resto</h2>
+	<h3>N - No hay, P - Hay pocos, R - Para rellenar otro </h3>
+    <div class="articulo"><label><input type="checkbox" value="2030640"> 2030640</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="2030628"> 2030628</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="21041200"> 21041200</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="21041160"> 21041160</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="2030619"> 2030619</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="44021160"> 44021160</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="44021200"> 44021200</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="44021250"> 44021250</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<br>
+	<div class="articulo"><label><input type="checkbox" value="40021160"> 40021160</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="00080866"> 00080866</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="40021200"> 40021200</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="40021250"> 40021250</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="40021320"> 40021320</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31130220"> 31130220</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31042116"> 61042116</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31042525"> 31042525</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31130420"> 31130420</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<br>
+    <div class="articulo"><label><input type="checkbox" value="31130120"> 31130120</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31130116"> 31130116</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31012116"> 31012116</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31012216"> 31012216</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31012425"> 31012425</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31012420"> 31012420</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31012740"> 31012740</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31012632"> 31012632</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<br>
+	<div class="articulo"><label><input type="checkbox" value="31012525"> 31012525</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31012532"> 31012532</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31095400"> 31095400</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31095200"> 31095200</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31095100"> 31095100</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31095700"> 31095700</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31095600"> 31095600</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	<div class="articulo"><label><input type="checkbox" value="31095500"> 31095500</label><label><input type="checkbox" value="No hay"> N</label><label><input type="checkbox" value="Queda poco"> P</label><label><input type="checkbox" value="Para rellenar otro"> R</label></div>
+	
+	
+  </div>
+  
+
+  <div class="acciones">
+    <button onclick="generarPDF()">Generar PDF</button>
+  </div>
+
+<!-- Librerías necesarias -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.1/jspdf.plugin.autotable.min.js"></script>
+
+<script>
+function generarPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  let y = 20;
+  const pageHeight = doc.internal.pageSize.height;
+  const marginBottom = 20;
+  let pageNumber = 1;
+
+  // === FUNCIÓN ENCABEZADO ===
+  function addHeader() {
+    doc.setFontSize(16);
+    doc.setTextColor(11, 109, 255);
+    doc.text("Listado de piezas a reponer", 105, 15, { align: "center" });
+    doc.setFontSize(10);
+    doc.text(`Página ${pageNumber}`, 190, 15, { align: "right" });
+    doc.setDrawColor(11, 109, 255);
+    doc.line(20, 18, 190, 18); // línea decorativa bajo el título
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+  }
+
+  // === FUNCIÓN SALTO DE PÁGINA ===
+  function checkPageEnd(extraSpace = 10) {
+    if (y + extraSpace > pageHeight - marginBottom) {
+      doc.addPage();
+      pageNumber++;
+      addHeader(); // encabezado en nueva página
+      y = 25; // reiniciar posición bajo el encabezado
+    }
+  }
+
+  // Encabezado de la primera página
+  addHeader();
+
+  const armario = document.getElementById("armario").value;
+  const observaciones = document.getElementById("observaciones").value;
+
+  // Armario
+  if (armario) {
+    y += 15;
+    checkPageEnd();
+    doc.setFont(undefined, "bold");
+    doc.text("Armario:", 20, y);
+    doc.setFont(undefined, "normal");
+    doc.text(armario, 50, y);
+  }
+
+  // Observaciones
+  if (observaciones) {
+    y += 10;
+    checkPageEnd();
+    doc.setFont(undefined, "bold");
+    doc.text("Observaciones:", 20, y);
+    doc.setFont(undefined, "normal");
+    const splitText = doc.splitTextToSize(observaciones, 170);
+    splitText.forEach(line => {
+      y += 6;
+      checkPageEnd();
+      doc.text(line, 20, y);
+    });
+  }
+
+  // Familias
+  const familias = document.querySelectorAll(".familia");
+  familias.forEach(fam => {
+    const nombreFamilia = fam.querySelector("h2").innerText;
+    const seleccionados = fam.querySelectorAll("input[type=checkbox]:checked");
+    if (seleccionados.length > 0) {
+      y += 10;
+      checkPageEnd();
+      doc.setFont(undefined, "bold");
+      doc.text(nombreFamilia, 20, y);
+      doc.setFont(undefined, "normal");
+
+      seleccionados.forEach(item => {
+        y += 8;
+        checkPageEnd();
+        doc.text("- " + item.value, 30, y);
+      });
+    }
+  });
+
+  doc.save("reposicion_piezas.pdf");
+}
+</script>
+
+<style>
+  .familia h2 {
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ea9800;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin: 0;
+  }
+
+  .familia h2::after {
+    content: "▼";
+    font-size: 14px;
+    transition: transform 0.2s;
+  }
+
+  .familia.collapsed h2::after {
+    transform: rotate(-90deg);
+  }
+
+  .familia .contenido {
+    padding: 10px 15px;
+    display: none;
+  }
+
+  .familia:not(.collapsed) .contenido {
+    display: block;
+  }
+</style>
+
+<script>
+  // Desplegables para cada familia
+  document.querySelectorAll('.familia').forEach(fam => {
+    const h2 = fam.querySelector('h2');
+    const contenido = document.createElement('div');
+    contenido.classList.add('contenido');
+
+    // Mueve todos los elementos excepto el h2 dentro del contenedor
+    [...fam.children].forEach(child => {
+      if (child !== h2) contenido.appendChild(child);
+    });
+    fam.appendChild(contenido);
+
+    // Empieza colapsado
+    fam.classList.add('collapsed');
+
+    h2.addEventListener('click', () => {
+      fam.classList.toggle('collapsed');
+    });
+  });
+</script>
+
+<!-- Botones de acción -->
+<div class="acciones" style="margin-top:20px;">
+  <button id="guardar-csv">💾 Guardar lectura (CSV)</button>
+  <button id="comparar-csv">📊 Comparar lecturas</button>
+  <button id="exportar-pdf" style="display:none;">🖨️ Exportar comparativa a PDF</button>
+  <input type="file" id="csvFiles" accept=".csv" multiple style="display:none;">
+</div>
+
+
+<!-- Tu script principal -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const btnGuardar = document.getElementById("guardar-csv");
+  const btnComparar = document.getElementById("comparar-csv");
+  const inputCSV = document.getElementById("csvFiles");
+  const btnPDF = document.getElementById("exportar-pdf");
+
+  if (!btnGuardar || !btnComparar || !inputCSV) {
+    console.error("⚠️ Botones o input CSV no encontrados en el DOM.");
+    return;
+  }
+
+  // --- Guardar lectura CSV ---
+  btnGuardar.addEventListener("click", () => {
+    const filas = [];
+    const armario = document.getElementById("armario")?.value || "Sin_nombre";
+    const familiasDom = document.querySelectorAll(".familia");
+
+    familiasDom.forEach(familia => {
+      const nombreFamilia = familia.querySelector("h2")?.textContent.trim() || "Sin nombre";
+      const articulos = familia.querySelectorAll(".articulo");
+
+      filas.push([armario, nombreFamilia.toUpperCase(), "—", "—"]);
+
+      articulos.forEach(articulo => {
+        const labels = articulo.querySelectorAll("label");
+        const nombreArticulo = labels[0]?.innerText.trim() || "Artículo sin nombre";
+
+        let estado = "OK";
+        for (let i = 1; i < labels.length; i++) {
+          const input = labels[i].querySelector("input");
+          if (input && input.checked) {
+            estado = input.value;
+            break;
+          }
+        }
+        filas.push([armario, nombreFamilia, nombreArticulo, estado]);
+      });
+    });
+
+    let csv = "Armario,Familia,Artículo,Estado\r\n";
+    filas.forEach(f => csv += f.join(",") + "\r\n");
+
+    const blob = new Blob([csv], { type: "text/csv" });
+    const enlace = document.createElement("a");
+    enlace.href = URL.createObjectURL(blob);
+    enlace.download = `lectura_${armario}.csv`;
+    enlace.click();
+  });
+
+  // --- Comparar CSV ---
+  btnComparar.addEventListener("click", () => {
+    inputCSV.value = "";
+    inputCSV.click();
+  });
+
+  inputCSV.addEventListener("change", event => {
+    const files = event.target.files;
+    if (!files.length) return;
+
+    const lectores = [];
+    for (const file of files) {
+      lectores.push(new Promise(resolve => {
+        const reader = new FileReader();
+        reader.onload = e => resolve({ nombre: file.name, contenido: e.target.result });
+        reader.readAsText(file);
+      }));
+    }
+
+    Promise.all(lectores).then(archivos => {
+      generarComparativa(archivos, btnPDF);
+    });
+  });
+});
+
+// --- Función para generar la comparativa (sin duplicados) ---
+function generarComparativa(archivos, btnPDF) {
+  const datos = {};         // clave: familia|articulo
+  const familias = {};      // familias[ familia ] = Set(claves)
+  const armariosSet = new Set();
+
+  archivos.forEach(({ contenido }) => {
+    const lineas = contenido.trim().split("\n").slice(1);
+
+    lineas.forEach(linea => {
+      const columnas = linea.split(",");
+      while (columnas.length > 4) {
+        columnas[2] = columnas[2] + "," + columnas.splice(3,1);
+      }
+
+      let [armario, familia, articulo, estado] = columnas.map(x => x.trim().replace(/^"|"$/g, ""));
+
+      if (!articulo || articulo === "—") return;
+
+      armariosSet.add(armario);
+
+      // clave única: familia + "|" + artículo en minúsculas
+      const clave = `${familia}||${articulo.toLowerCase()}`;
+
+      if (!datos[clave]) {
+        datos[clave] = {
+          familia,
+          articuloOriginal: articulo,
+          estados: {}
+        };
+      }
+
+      datos[clave].estados[armario] = estado;
+
+      if (!familias[familia]) familias[familia] = new Set();
+      familias[familia].add(clave);
+    });
+  });
+
+  const nombresArmarios = Array.from(armariosSet);
+  const familiasOrdenadas = Object.keys(familias).sort((a,b) => a.localeCompare(b));
+
+  // CREACIÓN TABLA
+  let html = `
+    <div id="tablaComparativa" style="overflow-x:auto; margin-top:30px;">
+      <h2>📊 Comparativa entre armarios</h2>
+      <table border="1" cellspacing="0" cellpadding="6" style="width:100%; border-collapse:collapse; font-size:12px;">
+        <thead><tr><th>Familia</th><th>Artículo</th>`;
+
+  nombresArmarios.forEach(a => html += `<th>${a}</th>`);
+  html += `</tr></thead><tbody>`;
+
+  familiasOrdenadas.forEach(fam => {
+    html += `<tr style="background:#dfe9ff; font-weight:bold;">
+               <td colspan="${nombresArmarios.length + 2}">${fam}</td>
+             </tr>`;
+
+    const clavesOrdenadas = Array.from(familias[fam]).sort((a,b) => {
+      return datos[a].articuloOriginal.localeCompare(datos[b].articuloOriginal);
+    });
+
+    clavesOrdenadas.forEach(clave => {
+      const item = datos[clave];
+
+      html += `<tr><td>${item.familia}</td><td>${item.articuloOriginal}</td>`;
+
+      nombresArmarios.forEach(a => {
+        const estado = item.estados[a] || "";
+        let color = "";
+        if (estado.includes("No hay")) color = "#ffcccc";
+        else if (estado.includes("Para rellenar otro")) color = "#fff4cc";
+        else if (estado.includes("Queda poco")) color = "#ffe4b5";
+
+        html += `<td style="background:${color}; text-align:center;">${estado || "-"}</td>`;
+      });
+
+      html += "</tr>";
+    });
+  });
+
+  html += "</tbody></table></div>";
+
+  const anterior = document.getElementById("tablaComparativa");
+  if (anterior) anterior.remove();
+
+  const cont = document.createElement("div");
+  cont.innerHTML = html;
+  document.body.appendChild(cont);
+
+  btnPDF.style.display = "inline-block";
+}
+
+// --- Exportar comparativa a PDF (versión rápida con autoTable) ---
+document.addEventListener("click", async (e) => {
+  if (e.target && e.target.id === "exportar-pdf") {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation: "landscape", unit: "pt", format: "a4" });
+    const tabla = document.getElementById("tablaComparativa");
+    if (!tabla) { alert("Primero genera una comparativa antes de exportar."); return; }
+    alert("Generando PDF...");
+
+    const fechaStr = new Date().toLocaleString();
+    doc.setFontSize(14);
+    doc.text("📊 Comparativa de Armarios - Control de Stock", 40, 40);
+    doc.setFontSize(10);
+    doc.text(fechaStr, 40, 58);
+
+    const headers = [];
+    const body = [];
+    tabla.querySelectorAll("thead th").forEach(th => headers.push(th.innerText));
+    tabla.querySelectorAll("tbody tr").forEach(tr => {
+      const fila = [];
+      tr.querySelectorAll("td").forEach(td => fila.push(td.innerText));
+      body.push(fila);
+    });
+
+    doc.autoTable({
+      startY: 70,
+      head: [headers],
+      body: body,
+      styles: { fontSize: 8, cellPadding: 3 },
+      headStyles: { fillColor: [0, 102, 204], textColor: [255, 255, 255] },
+      alternateRowStyles: { fillColor: [245, 245, 245] },
+      columnStyles: { 0: { cellWidth: 90 }, 1: { cellWidth: 120 } },
+    });
+
+    doc.save("comparativa_armarios.pdf");
+  }
+});
+</script>
+</body>
+</html>
+

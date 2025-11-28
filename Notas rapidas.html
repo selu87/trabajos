@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Notas rápidas</title>
+<style>
+  :root{--bg:#f6f8ff;--card:#ffffff;--accent:#EA9800;--muted:#6b7280}
+  *{box-sizing:border-box;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+  body{margin:0;background:var(--bg);color:#111;padding:22px}
+  .wrap{max-width:920px;margin:0 auto}
+  header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}
+  h1{margin:0;font-size:20px;color:var(--accent)}
+  .controls{display:flex;gap:8px;align-items:center}
+  button{background:var(--accent);color:#fff;border:0;padding:8px 12px;border-radius:8px;cursor:pointer}
+  button.ghost{background:transparent;color:var(--accent);border:1px solid rgba(30,111,255,0.12)}
+  input[type=text], textarea{padding:10px;border-radius:8px;border:1px solid #e6e9ef;background:#fff}
+  .newnote{display:flex;gap:8px;margin-bottom:12px}
+  textarea{flex:1;min-height:64px;resize:vertical}
+  .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+  .note{background:var(--card);padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(15,20,40,0.04);position:relative}
+  .note .meta{font-size:12px;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between;gap:8px}
+  .note .text{white-space:pre-wrap;word-break:break-word}
+  .note .actions{display:flex;gap:6px;margin-top:10px}
+  .small{font-size:13px;color:var(--muted)}
+  .pin{position:absolute;top:10px;right:10px;background:rgba(255,230,0,0.12);padding:6px;border-radius:8px;font-weight:700;color:#b97b00}
+  .toolbar{display:flex;gap:8px;align-items:center}
+  .search{padding:8px;border-radius:8px;border:1px solid #e6e9ef;background:#fff}
+  .empty{padding:18px;text-align:center;color:var(--muted)}
+  footer{margin-top:16px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;gap:12px}
+  @media (max-width:640px){ .newnote{flex-direction:column} }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Optron - Notas rápidas</h1>
+        <div class="small">Añade ideas, recordatorios o tareas al vuelo — se guardan en tu navegador.</div>
+      </div>
+
+      <div class="controls">
+        <input id="search" class="search" placeholder="Buscar notas..." />
+        <div class="toolbar">
+          <button id="exportBtn" title="Exportar JSON">Exportar</button>
+          <button id="importBtn" class="ghost" title="Importar JSON">Importar</button>
+          <input id="fileInput" type="file" accept="application/json" style="display:none" />
+          <button id="clearAll" class="ghost" title="Eliminar todas (pérdida irreversible)">Borrar todo</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="newnote">
+      <textarea id="noteText" placeholder="Escribe algo rápido... (Ctrl+Enter para guardar)"></textarea>
+      <div style="display:flex;flex-direction:column;gap:8px;min-width:160px">
+        <input id="noteTitle" type="text" placeholder="Título (opcional)" />
+        <div style="display:flex;gap:8px">
+          <button id="addBtn">Añadir</button>
+          <button id="pinToggle" class="ghost" title="Marcar como fijada (pin)">Fijar</button>
+        </div>
+        <div class="small">Atajo: <strong>Ctrl+Enter</strong> guarda la nota</div>
+      </div>
+    </section>
+
+    <section id="notesWrap">
+      <div id="notesList" class="list"></div>
+      <div id="empty" class="empty" style="display:none">No hay notas — añade la primera.</div>
+    </section>
+
+    <footer>
+      <div>Guardado localmente (localStorage)</div>
+      <div class="small">Optron • Notas rápidas</div>
+    </footer>
+  </div>
+
+<script>
+(() => {
+  const KEY = 'notas-rapidas-infosel-v1';
+  let notes = JSON.parse(localStorage.getItem(KEY) || '[]');
+  const el = {
+    notesList: document.getElementById('notesList'),
+    noteText: document.getElementById('noteText'),
+    noteTitle: document.getElementById('noteTitle'),
+    addBtn: document.getElementById('addBtn'),
+    search: document.getElementById('search'),
+    exportBtn: document.getElementById('exportBtn'),
+    importBtn: document.getElementById('importBtn'),
+    fileInput: document.getElementById('fileInput'),
+    clearAll: document.getElementById('clearAll'),
+    pinToggle: document.getElementById('pinToggle'),
+    empty: document.getElementById('empty')
+  };
+
+  let pinNext = false; // si la próxima nota será fijada
+
+  function save() {
+    localStorage.setItem(KEY, JSON.stringify(notes));
+  }
+
+  function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+
+  function addNote({title='',text='',pinned=false,created=null}) {
+    if (!text || !text.trim()) return;
+    const note = {
+      id: uid(),
+      title: title.trim(),
+      text: text.trim(),
+      pinned: !!pinned,
+      created: created || new Date().toISOString()
+    };
+    notes.unshift(note); // al principio
+    save();
+    render();
+  }
+
+  function deleteNote(id) {
+    if(!confirm('Eliminar nota?')) return;
+    notes = notes.filter(n => n.id !== id);
+    save();
+    render();
+  }
+
+  function togglePin(id) {
+    notes = notes.map(n => n.id === id ? {...n, pinned: !n.pinned} : n);
+    // mantener orden: las fijadas al inicio
+    notes.sort((a,b) => (b.pinned - a.pinned) || (new Date(b.created) - new Date(a.created)));
+    save();
+    render();
+  }
+
+  function editNote(id) {
+    const n = notes.find(x => x.id === id);
+    if(!n) return;
+    const newTitle = prompt('Editar título', n.title);
+    if(newTitle === null) return;
+    const newText = prompt('Editar texto', n.text);
+    if(newText === null) return;
+    n.title = newTitle.trim();
+    n.text = newText.trim();
+    save();
+    render();
+  }
+
+  function render(filter='') {
+    el.notesList.innerHTML = '';
+    const q = filter.trim().toLowerCase();
+    let list = notes.slice();
+    // ordenar por pinned + fecha
+    list.sort((a,b) => (b.pinned - a.pinned) || (new Date(b.created) - new Date(a.created)));
+    if(q) {
+      list = list.filter(n => (n.title||'').toLowerCase().includes(q) || (n.text||'').toLowerCase().includes(q));
+    }
+    if(list.length === 0) {
+      el.empty.style.display = 'block';
+      return;
+    } else el.empty.style.display = 'none';
+
+    list.forEach(n => {
+      const node = document.createElement('article');
+      node.className = 'note';
+      if(n.pinned) {
+        const p = document.createElement('div'); p.className = 'pin'; p.textContent = '📌'; node.appendChild(p);
+      }
+      const meta = document.createElement('div'); meta.className = 'meta';
+      const leftMeta = document.createElement('div');
+      leftMeta.innerHTML = `<strong>${n.title || (n.text.slice(0,30) + (n.text.length>30? '…':''))}</strong>`;
+      const rightMeta = document.createElement('div'); rightMeta.textContent = new Date(n.created).toLocaleString();
+      meta.appendChild(leftMeta); meta.appendChild(rightMeta);
+
+      const txt = document.createElement('div'); txt.className = 'text'; txt.textContent = n.text;
+
+      const actions = document.createElement('div'); actions.className = 'actions';
+      const btnPin = document.createElement('button'); btnPin.textContent = n.pinned ? 'Desfijar' : 'Fijar';
+      btnPin.onclick = () => togglePin(n.id);
+      const btnEdit = document.createElement('button'); btnEdit.className = 'ghost'; btnEdit.textContent = 'Editar';
+      btnEdit.onclick = () => editNote(n.id);
+      const btnDel = document.createElement('button'); btnDel.className = 'ghost'; btnDel.textContent = 'Eliminar';
+      btnDel.onclick = () => deleteNote(n.id);
+
+      actions.appendChild(btnPin); actions.appendChild(btnEdit); actions.appendChild(btnDel);
+
+      node.appendChild(meta); node.appendChild(txt); node.appendChild(actions);
+      el.notesList.appendChild(node);
+    });
+  }
+
+  // eventos
+  el.addBtn.addEventListener('click', () => {
+    addNote({title: el.noteTitle.value, text: el.noteText.value, pinned: pinNext});
+    el.noteText.value = ''; el.noteTitle.value = ''; pinNext = false; el.pinToggle.classList.remove('active');
+    el.noteText.focus();
+  });
+
+  el.pinToggle.addEventListener('click', () => {
+    pinNext = !pinNext;
+    el.pinToggle.classList.toggle('active', pinNext);
+    el.pinToggle.textContent = pinNext ? 'Fijada (próx.)' : 'Fijar';
+  });
+
+  // atajo Ctrl+Enter para añadir
+  el.noteText.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      e.preventDefault();
+      el.addBtn.click();
+    }
+  });
+
+  el.search.addEventListener('input', () => render(el.search.value));
+
+  // exportar
+  el.exportBtn.addEventListener('click', () => {
+    const data = JSON.stringify(notes, null, 2);
+    const blob = new Blob([data], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'notas-rapidas-infosel.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  // importar
+  el.importBtn.addEventListener('click', () => el.fileInput.click());
+  el.fileInput.addEventListener('change', (ev) => {
+    const f = ev.target.files[0];
+    if(!f) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const imported = JSON.parse(reader.result);
+        if(!Array.isArray(imported)) throw new Error('Formato inválido');
+        // mezclar pero evitar ids duplicadas
+        const existingIds = new Set(notes.map(n => n.id));
+        imported.forEach(n => {
+          if(!n.id) n.id = uid();
+          if(!existingIds.has(n.id)) notes.push(n);
+        });
+        save(); render(); alert('Importadas ' + imported.length + ' notas (se han añadido las no duplicadas).');
+      } catch (err) {
+        alert('Error al importar: ' + err.message);
+      }
+    };
+    reader.readAsText(f);
+    el.fileInput.value = '';
+  });
+
+  // borrar todo
+  el.clearAll.addEventListener('click', () => {
+    if(!confirm('¿Eliminar todas las notas? Esta acción no se puede deshacer.')) return;
+    notes = [];
+    save(); render();
+  });
+
+  // inicializar
+  render();
+
+})();
+</script>
+</body>
+</html>
